@@ -1,0 +1,247 @@
+<header class="main-header1">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="admin">WORKERS COMPENSATION PROSPECT</div>
+                </div>
+                <div class="col-sm-7 text-right">
+                    <button ng-click="logout()" class="btn btn-danger header-btn">Logout</button>
+                    <!-- <a href="#" class="header-search-icon header-btn">
+                        <i class="fa fa-search"></i>
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+    <div class="search_panel">
+        <div class="search_inner">
+            <p class="" id="removeClass" style="margin-bottom: 0; border-radius: 0;" ng-hide="successful_login" ng-show="login_message" ng-cloak>{{login_message}}</p>
+            <div class="panel-body text_head">
+                <h4>Division of Workers' Compensation <br/>
+                Compliance Proof of Coverage Search Page   </h4>
+            </div>
+        <div class="panel-body search-panel-body">
+            <div class="form-group">
+                <label for="sel1">Search By DATE OR ZIP:</label>
+                <form class="contact" name="SearchForm">         
+                <div class="fromdatetodate form-group search_input __web-inspector-hide-shortcut__ ">
+                        <div class="half_part_1"> <label>From</label>
+                <md-content layout-padding="" ng-cloak="" class="datepickerdemoBasicUsage">
+                <md-datepicker ng-model="SearchFormObj.from" md-placeholder="Enter date" md-open-on-focus="" id="fromdate"></md-datepicker>
+                     </div>
+                    <div class="half_part_1"> <label>To</label>
+                <md-datepicker ng-model="SearchFormObj.to" md-placeholder="Enter date" md-open-on-focus="" id="todate"></md-datepicker>
+                </md-content>
+                     </div>
+                    </div>
+        
+                <div class="form-group"><div class="half_part_zip"><label>Zip</label> <input type="text" maxlength="10" value='32321' name="zip_code" id="zip" ng-model="SearchFormObj.emZip"/><br/> </div></div>
+                             
+                <div class="form-group"><div class="half_part_zip"><label>Maximum Records Return</label><input type="number" name="return_rec" ng-model="SearchFormObj.max_record"/> </div></div>
+                
+                <button name="submit" type="submit" ng-disabled="submitBtn" ng-click="search_employer()" class="submit-btn">Search</button>
+                <!-- <button ng-click="logout()" class="submit-btn logout">Logout</button> -->       
+        
+                </form>
+    
+                </div>         
+            </div>
+        </div>   
+    </div>
+</div>
+
+<style type="text/css">
+    .loader-div {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.5);
+        z-index: 99;
+    }
+    .loader-div img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -16px 0 0 -16px;
+    }
+    .fromdatetodate md-content.datepickerdemoBasicUsage {
+        padding: 0;
+        background: none;
+    }
+    .fromdatetodate md-content.datepickerdemoBasicUsage md-datepicker {
+        padding: 0;
+    }
+    .fromdatetodate button.md-datepicker-button.md-icon-button {
+        margin: 0;
+        padding: 0;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    button.submit-btn {
+        background: #1473be;
+        border: none;
+        border-radius: 2px;
+        line-height: 1.5;
+        padding: 7px 18px;
+        color: #fff;
+        float: right;
+    }
+    .search_by{
+        display: inline-block;
+        margin-bottom: 30px;
+    }
+.search_panel .search_inner {
+    margin: 40px auto;
+    width: 100%;
+    max-width: 500px;
+    border: solid 1px #DDC;
+    border-bottom: solid 4px #1473be;
+    box-shadow: 3px 5px 6px 0px rgba(0,0,0,0.2);
+}
+
+/*.search_panel .panel-heading {
+    background: #1473be;
+}*/
+
+/*.search_panel .panel-heading a {
+    color: #fff;
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}*/
+
+/*.search_panel .panel-body.text_head {
+    text-align: center;
+}*/
+
+.search_panel label {
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+}
+.search_panel .panel-body.text_head {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+.search_panel select#search_by {
+    width: 100%;
+}
+
+.search_panel .search_input label {
+    display: block;
+}
+.half_part_zip {
+    width: 100%;
+    float: none;
+    position: relative;
+}
+
+.half_part_zip input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    margin: 0px !important;
+}
+.half_part_1 {
+    width: 49%;
+    float: left;
+    position: relative;
+}
+
+.half_part_1 input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    margin: 0px !important;
+}
+
+.search_input:after {content: "";display: block;clear: both;}
+
+* {
+    box-sizing: border-box;
+}
+
+.half_part_1 img {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.half_part_1:first-child {
+    margin-right: 2%;
+}
+.panel-body.text_head h4 {
+    line-height: 1.4 !important;
+    font-weight: bold;
+}
+.search_btn{
+    padding: 7px 50px;
+    font-size: 17px;
+    font-weight: bold;
+}
+.list table, .list tbody, .list tr {
+    width: 100%;
+}
+
+.list table tr th {
+    text-align: center;
+    padding: 8px 4px;
+    border: solid 1px #ddd;
+    background: #1473be;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.list table {
+    border: solid 1px #ddd;
+}
+
+.list {
+    padding: 30px 15px;
+}
+
+.list table tr td {
+    color: #555;
+    padding: 8px 4px;
+    border: solid 1px #ddd;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+input.search_field {
+    max-width: 400px;
+    width: 100%;
+    margin: 0px auto;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: solid 2px #1473be;
+}
+.footer_text {
+    display: none;
+    padding: 5px 10px;
+    background: #1473be;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.panel.panel-default.search_panel {
+    margin: 0px;
+    border-bottom: 0px;
+}
+.logout{
+    float: left !important;
+}
+.main-header{
+    display: none;
+}
+</style>

@@ -1,0 +1,183 @@
+html body {
+	font-family: 'Open Sans', sans-serif;
+    background: #f1f1f1;
+    color: #555;
+}
+body a:hover {
+	text-decoration: none;
+}
+body button {
+	outline: none !important;
+}
+body h1, body h2, body h3, body h4, body h5, body h6, form *, button {
+	font-family: 'Open Sans', sans-serif;
+}
+nav.navbar.navbar-default.navbar-fixed-top {
+    display: none;
+}
+.btn {
+    border: none;
+    border-radius: 2px;
+    line-height: 1.5;
+    padding: 7px 15px;
+    color: #fff;
+}
+.btn.btn-primary {
+    background: #1473be;
+}
+.header-btn {
+    margin: 15px 0 15px 10px;
+}
+header .admin {
+    margin: 15px 0;
+    font-weight: 600;
+    font-size: 20px;
+}
+header.main-header1 {
+    background: #fff;
+    width: 100%;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.4);
+}
+header.main-header {
+    background: #fff;
+    width: 100%;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.4);
+}
+.admin_content_box {
+    padding: 50px 0;
+}
+.admin_table_search {
+    max-width: 500px;
+    margin: 0px auto 50px auto;
+    border: solid 1px #ddd;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: -1px 5px 0px -2px rgba(0,0,0,0.1);
+    position: relative;
+    background: #fff;
+}
+.admin_table_search i.fa.fa-search {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.admin_table_search > input {
+    border: none;
+    width: 100%;
+    padding-left: 15px;
+    height: 32px;
+    padding-right: 40px;
+    outline: none;
+}
+table.table_admin {
+    width: 100%;
+    background: #fff;
+    max-width: 1170px;
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: -1px 2px 2px 1px rgba(0,0,0,0.1);
+}
+table.table_admin tr th {
+    text-align: left;
+    padding: 10px;
+    border-bottom: solid 3px #555;
+    color: #555;
+    background: #fff;
+}
+table.table_admin tr td {
+    padding: 10px;
+    color: #666;
+    border-bottom: solid 1px #ddd;
+    position: relative;
+    font-weight: 600;
+}
+table.table_admin tr:nth-of-type(even) {
+    background-color: rgba(25, 24, 24, 0.1);
+}
+button.edit {
+    background: #1473be;
+    border: solid 2px #1473be;
+    color: #fff;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 2px;
+    box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+button.Delete {
+    background: #d9534f;
+    border: solid 2px #d9534f;
+    color: #fff;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 2px;
+    box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.modal-header h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+}
+.form-error {
+    color: #d9534f;
+    font-size: 12px;
+    font-style: italic;
+}
+.password-eye-field span#show_hide {
+    position: absolute;
+    right: 8px;
+    top: 31px;
+    cursor: pointer;
+    color: #1473be;
+}
+.password-eye-field {
+    position: relative;
+}
+.modal-body .form-group:last-child {
+    margin-bottom: 0;
+}
+body .form-control:focus {
+    box-shadow: inset 2px 2px 2px rgba(0,0,0,0.1);
+    border-color: #1473be;
+}
+.font-bold {
+	font-weight: 600;
+}
+.font-bold-big {
+	font-size: 16px;
+	font-weight: 600;
+}
+.panel.panel-default.search_panel {
+    padding: 0 0 1px 0;
+}
+.search_panel .search_inner {
+    background: #fff;
+}
+.panel-body .form-group:last-child {
+    margin-bottom: 0;
+}
+.search_panel.login_panel .panel-body.text_head {
+    margin-bottom: 0;
+}
+.panel-body.login-body {
+    padding: 15px 30px 30px 30px;
+}
+span.span-error {
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    color: #d9534f;
+}
+span.span-success {
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    color: #5cb85c;
+}
+.panel-body.login-body .form-group {
+    margin-top: 15px;
+}

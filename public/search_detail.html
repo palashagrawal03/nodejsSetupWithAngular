@@ -1,0 +1,324 @@
+<header class="main-header1">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="admin">Search Result</div>
+                </div>
+                <div class="col-sm-7 text-right">
+                    <button ng-click="logout()" class="btn btn-danger header-btn">Logout</button>
+                    <a ui-sref="root.searchAdmin" class="header-search-icon header-btn">
+                        <i class="fa fa-search">Return to Search Page</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- <div class="return_btn"><a ui-sref="root">Return to Search Page</a></div> -->
+<input class="search_field" style="display: none;" type="text" placeholder="Enter your search" ng-model="search">
+
+<div class="footer_text1"><span>{{arrayLength}} records found for your search. You requested {{quantity}} records.</span>
+   <button type="button" id="downloadable" style="display: none;" class="btn btn-default" ng-csv="items" filename="wc_search.csv" csv-header="['Employer Name', 'Employer Address', 'City', 'State', 'Zip Code', 'Phone', 'No. Of Emp', 'Eff Date', 'Cancel Date', 'State', 'City', 'Agency', 'GOV Class', 'Insurer']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
+   <!-- <button id="downloadable" style="display: none;" class="btn btn-default" ng-click="exportData()">Export Data</button> -->
+   <!-- <button id="downloadable" style="display: none;" class="btn btn-default" ng-click="export()">Export Data</button> -->
+   
+   
+</div>
+   <div class="list table-responsive" id="exportable">
+<table>
+<tr>
+        <th>S.No.</th>
+        <th>Employer Name<a href="#" ng-click="sort('emName')"><span class="caret"></span></a></th>
+        <th>Employer Address<a href="#" ng-click="sort('emStreet1')"><span class="caret"></span></a></th>
+        <th>City<a href="#" ng-click="sort('emCity')"><span class="caret"></span></a></th>
+        <th>State<a href="#" ng-click="sort('emState')"><span class="caret"></span></a></th>
+        <th>Zip Code<a href="#" ng-click="sort('emZip')"><span class="caret"></span></a></th>
+        <th>Phone<a href="#" ng-click="sort('emPhone')"><span class="caret"></span></a></th>
+        <th>Eff Date<a href="#" ng-click="sort('effective_date')"><span class="caret"></span></a></th>
+        <th>Cancel Date<a href="#" ng-click="sort('cancel_date')"><span class="caret"></span></a></th>
+        <th>GOV Class<a href="#" ng-click="sort('poc_gov_class')"><span class="caret"></span></a></th>
+        <th>No. Of Emp<a href="#" ng-click="sort('emNumEmployees')"><span class="caret"></span></a></th>
+        <th>Insurer<a href="#" ng-click="sort('pocInsurer')"><span class="caret"></span></a></th>
+        <th>Agency<a href="#" ng-click="sort('pocAgency')"><span class="caret"></span></a></th>
+        <th>City<a href="#" ng-click="sort('pocCity')"><span class="caret"></span></a></th>
+        <th>State<a href="#" ng-click="sort('PoAgencyState')"><span class="caret"></span></a></th>
+                    
+
+       <!--  <tr dir-paginate="item in items|itemsPerPage:100|filter: search|limitTo:quantity| orderBy : f_name : s_type"> -->
+        <tr ng-repeat="item in items | filter: search | limitTo:quantity | orderBy : f_name : s_type">
+            <td>{{$index+1}}</td>
+            <td ng-bind="item.emName"></td>
+            <td ng-bind="item.emStreet1"></td>
+            <td ng-bind="item.emCity"></td>
+            <td ng-bind="item.emState"></td>
+            <td ng-bind="item.emZip"></td>
+            <td ng-bind="item.emPhone"></td>
+            <td ng-bind="item.effective_date | date:'MM/dd/yy'"></td>
+            <td ng-bind="item.cancel_date | date:'MM/dd/yy'"></td>
+            <td ng-bind="item.poc_gov_class"></td>
+            <td ng-bind="item.emNumEmployees"></td>
+            <td ng-bind="item.pocInsurer"></td>
+            <td ng-bind="item.pocAgency"></td>
+            <td ng-bind="item.pocCity"></td>
+            <td ng-bind="item.PoAgencyState"></td>
+            
+            
+        </tr>    
+    </table>
+    <!-- <dir-pagination-controls
+                    max-size="50"
+                    direction-links="true"
+                    boundary-links="true" >
+    </dir-pagination-controls> -->
+    
+         
+    <div class="footer_text"><span>{{arrayLength}} records found for your search. You requested {{quantity}} records.</span></div>
+    </div>
+
+   <div class="return_btn"><a ui-sref="root.searchAdmin">Return to Search Page</a></div>
+
+    <div class="loader-div">
+        <img src="loader.gif" alt="image" />
+    </div>
+   <style type="text/css">
+    .loader-div {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.5);
+        z-index: 99;
+    }
+    .loader-div img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -16px 0 0 -16px;
+    }
+    .fromdatetodate md-content.datepickerdemoBasicUsage {
+        padding: 0;
+        background: none;
+    }
+    .fromdatetodate md-content.datepickerdemoBasicUsage md-datepicker {
+        padding: 0;
+    }
+    .fromdatetodate button.md-datepicker-button.md-icon-button {
+        margin: 0;
+        padding: 0;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    button.submit-btn {
+        background: #1473be;
+        border: none;
+        border-radius: 2px;
+        line-height: 1.5;
+        padding: 7px 18px;
+        color: #fff;
+        float: right;
+    }
+    .search_by{
+        display: inline-block;
+        margin-bottom: 30px;
+    }
+.search_panel .search_inner {
+    margin: 40px auto;
+    width: 100%;
+    max-width: 500px;
+    border: solid 1px #DDC;
+    border-bottom: solid 4px #1473be;
+    box-shadow: 3px 5px 6px 0px rgba(0,0,0,0.2);
+}
+button#downloadable {position: absolute;top: 0px;right: 15px;}
+
+div#exportable:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.footer_text1.ng-scope {
+    position: relative;
+    padding: 15px;
+    display: none;
+}
+
+div#exportable {
+    padding-top: 0px;
+}
+
+/*.search_panel .panel-heading {
+    background: #1473be;
+}*/
+
+/*.search_panel .panel-heading a {
+    color: #fff;
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}*/
+
+/*.search_panel .panel-body.text_head {
+    text-align: center;
+}*/
+
+.search_panel label {
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+}
+.search_panel .panel-body.text_head {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+.search_panel select#search_by {
+    width: 100%;
+}
+
+.search_panel .search_input label {
+    display: block;
+}
+.half_part_zip {
+    width: 100%;
+    float: none;
+    position: relative;
+}
+
+.half_part_zip input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    margin: 0px !important;
+}
+.half_part_1 {
+    width: 49%;
+    float: left;
+    position: relative;
+}
+
+.half_part_1 input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    margin: 0px !important;
+}
+
+.search_input:after {content: "";display: block;clear: both;}
+
+* {
+    box-sizing: border-box;
+}
+
+.half_part_1 img {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.half_part_1:first-child {
+    margin-right: 2%;
+}
+.panel-body.text_head h4 {
+    line-height: 1.4 !important;
+    font-weight: bold;
+}
+.search_btn{
+    padding: 7px 50px;
+    font-size: 17px;
+    font-weight: bold;
+}
+.list table, .list tbody, .list tr {
+    width: 100%;
+}
+
+.list table tr th {
+    text-align: center;
+    padding: 8px 4px;
+    border: solid 1px #ddd;
+    background: #1473be;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+#exportable table tr th a {
+    display: block;
+    color: #fff;
+}
+
+.list table {
+    border: solid 1px #ddd;
+}
+
+.list {
+    padding: 30px 15px;
+}
+
+.list table tr td {
+    color: #555;
+    padding: 8px 4px;
+    border: solid 1px #ddd;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+input.search_field {
+    max-width: 400px;
+    width: 100%;
+    margin: 0px auto;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: solid 2px #1473be;
+}
+.footer_text {
+    display: none;
+    padding: 5px 10px;
+    background: #1473be;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.panel.panel-default.search_panel {
+    margin: 0px;
+    border-bottom: 0px;
+}
+input.search_field {
+    margin-top: 10px;
+}
+
+.return_btn.ng-scope {
+    text-align: center;
+    display: none;
+}
+
+.return_btn.ng-scope a {
+    background: #1473be;
+    display: inline-block;
+    padding: 5px 15px;
+    margin-top: 70px;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    border: solid 2px #1473be;
+}
+div#exportable {
+    padding-top: 0px;
+    clear: both;
+}
+button#downloadable {
+    position: static;
+    top: 0px;
+    right: 15px;
+    float: right;
+    margin: 0px 5px 10px 5px;
+    color: blue;
+}
+.main-header{
+    display: none;
+}
+</style>

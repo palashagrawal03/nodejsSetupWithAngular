@@ -1,0 +1,140 @@
+<div class="container" ng-controller="LoginController">
+    <div class="search_panel login_panel">
+        <div class="search_inner">
+            <div class="panel-body text_head">
+                <h4>Sign In</h4>
+            </div>
+            <div class="panel-body login-body">
+                <span class="span-error" ng-hide="incorrect_detail" ng-show="error_message" ng-cloak> {{error_message}}</span>
+                <div id="login-form">
+                    <form method="post" action="" autocomplete="off">                   
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                               <input type="email" name="email" ng-model="loginDetail.email" class="form-control" placeholder="Your Email" value="" maxlength="40" />
+                            </div>
+                            <span class="text-danger"></span>
+                        </div>            
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                               <input type="password" ng-model="loginDetail.pass" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
+                            </div>
+                            <span class="text-danger"></span>
+                        </div>            
+                        <div class="form-group">
+                            <button type="button" ng-click="Loginclick()" class="btn btn-block btn-primary" name="btn-login">Sign In</button>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style type="text/css">
+    @charset "utf-8";
+*{
+    margin:0;
+    padding:0;
+}
+#wrapper{
+    padding-top:50px;
+}
+.panel-default {
+    border-color: #ddd;
+    margin-top: 74px;
+}
+input.file {
+    width: 19%;
+}
+select.form-control.selectclass {
+    width: 18%;
+}
+.sub {
+    margin-top: 14px;
+}    
+.search_by{
+        display: inline-block;
+        margin-bottom: 30px;
+    }
+.search_panel .search_inner {
+    margin: 40px auto;
+    width: 100%;
+    max-width: 500px;
+    border: solid 1px #DDC;
+    border-bottom: solid 4px #1473be;
+    box-shadow: 3px 5px 6px 0px rgba(0,0,0,0.2);
+}
+.search_panel label {
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+}
+.search_panel .panel-body.text_head {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+.search_panel select#search_by {
+    width: 100%;
+}
+
+.search_panel .search_input lable {
+    display: block;
+}
+.half_part_zip {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.half_part_zip input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    margin: 0px !important;
+}
+.half_part_1 {
+    width: 49%;
+    float: left;
+    position: relative;
+}
+
+.half_part_1 input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    margin: 0px !important;
+}
+
+.search_input:after {content: "";display: block;clear: both;}
+
+* {
+    box-sizing: border-box;
+}
+
+.half_part_1 img {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.half_part_1:first-child {
+    margin-right: 2%;
+}
+.panel-body.text_head h4 {
+    line-height: 1.4 !important;
+    font-weight: bold;
+}
+.search_btn{
+    padding: 7px 50px;
+    font-size: 17px;
+    font-weight: bold;
+}
+    
+</style>

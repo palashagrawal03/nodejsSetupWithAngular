@@ -1,0 +1,256 @@
+   <style type="text/css">
+   	.main-header{
+   		display: none;
+   	}
+   </style>
+   <script type="text/javascript">
+   	$(document).ready(function(){
+
+   		var error_email = true;
+   		var error_wrong_email = true;
+   		var error_password = true;
+   		var error_fname = true;
+
+   		$("#email").blur(function(){
+   			check_email();
+   		});
+   		$("#password").blur(function(){
+   			check_password();
+   		});
+   		$("#fullname").blur(function(){
+   			check_fname();
+   		});
+
+   		$("#show_hide").click(function(){
+   			var type = $("#password").attr('type');
+   			if(type == "password")
+   			{
+   				$("#password").attr('type','text');
+   			}
+   			else if(type == "text")
+   			{
+   				$("#password").attr('type','password');
+   			}
+   		});
+
+   		function check_email(){
+   			var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;//regular expression//
+   			var email = document.getElementById('email').value;
+   			
+   			if(email == "")
+   			{
+   				$("#email").css({"border":"1px solid #A94442"});
+				$("#email_req_msg").fadeIn();
+		     	  error_email = false;
+   			}
+   			else
+   			{
+   				$("#email").css({"border":"1px solid black"});
+	     	    $("#email_req_msg").fadeOut();
+	     	     error_email = true;
+   				if(reg.test(email) == false)
+   				{
+   					$("#email").css({"border":"1px solid #A94442"});
+			     	$("#wrong_email_msg").fadeIn();
+			     	  error_wrong_email = false;
+   				}
+   				else
+   				{
+   					$("#email").css({"border":"1px solid black"});
+			     	$("#wrong_email_msg").fadeOut();
+					 error_wrong_email = true;
+   				}
+   			}
+
+   		}
+
+   		function check_password(){
+   			var password = document.getElementById('password').value;
+   			if(password == "")
+   			{
+   				$("#password").css({"border":"1px solid #A94442"});
+				$("#password_req_msg").fadeIn();
+		     	  error_password = false;
+   			}
+   			else
+   			{
+   				$("#password").css({"border":"1px solid black"});
+	     	    $("#password_req_msg").fadeOut();
+	     	     error_password = true;
+   			}
+   		}
+
+   		function check_fname(){
+   			var fullname = document.getElementById('fullname').value;
+   			if(fullname == "")
+   			{
+   				$("#fullname").css({"border":"1px solid #A94442"});
+				$("#fname_req_msg").fadeIn();
+		     	  error_fname = false;
+   			}
+   			else
+   			{
+   				$("#fullname").css({"border":"1px solid black"});
+	     	    $("#fname_req_msg").fadeOut();
+	     	     error_fname = true;
+   			}
+   		}
+
+   		$("#click_show").click(function(){
+   			var type = $("#password").attr('type');
+   			if(type == "password")
+   			{
+   				$("#password").attr('type','text');
+   				$("#show_hide").html('hide');
+   			}
+   			else if(type == "text")
+   			{
+   				$("#password").attr('type','password');
+   				$("#show_hide").html('Show');
+   			}
+   		});
+
+   		$("#create_sadmin").click(function(){
+   			
+   			check_password();
+   			check_email();
+   			check_fname();
+   			if(error_email == true && error_wrong_email == true && error_password == true && error_fname == true)
+   			{
+   				return true;
+   			}
+   			else
+   			{
+   				return false;
+   			}
+   		})
+   	});
+   </script>
+   <div ng-controller="CreateUser" ng-init="get_data()">
+<div class="main_fluid">
+	<header class="main-header1">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="admin">Welcome Admin</div>
+				</div>
+				<div class="col-sm-9 text-right">
+					<a ui-sref="root.searchAdmin" class="btn btn-primary header-btn">
+						SearchPage
+					</a>
+					<a href="#" data-target="#addModal" data-toggle="modal" ng-click = clear_data() class="btn btn-primary header-btn">
+						Add User
+					</a>
+					<button ng-click="logout()" class="btn btn-danger header-btn">Logout</button>
+
+					<!-- <a href="#" class="header-search-icon header-btn">
+						<i class="fa fa-search"></i>
+					</a> -->
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="admin_content_box">
+		<div class="container">
+			<div class="search_bar">
+				<div class="admin_table_search">
+					<input type="text" ng-model="search" placeholder="Enter your search">
+					<i class="fa fa-search"></i>
+				</div>
+			</div>
+			<div class="user_detail">
+				<table class="table_admin">
+					<tr>
+						<th>S.No.</th>
+						<th>Full Name</th>
+						<th>Email ID</th>
+						<th>Password</th>
+						<th>Edit/Delete</th>					
+					</tr>
+					<tr ng-repeat = "val in details|filter : search">
+						<td>{{ $index+1 }}</td>
+						<td>{{val.fullName}}</td>
+						<td>{{val.emailId}}</td>
+						<td>{{val.pass}}</td>
+						<td class="edit_delete">
+							<button class="edit" data-target="#addModal" data-toggle="modal" ng-click = "id_edit(val)">Edit</button>
+							<button class="Delete" data-target = "#deleteModal" data-toggle= "modal" ng-click= "get_delete_id(val)">Delete</button>
+						</td>					
+					</tr>
+				</table>
+				
+			</div>
+		</div>		
+	</div>
+</div>
+
+
+
+	<!-- crete or edit subadmin modal start-->
+	
+	<div class="modal fade" id="addModal" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" class="creat_sub_admine">
+				<h3>{{usersDetail._id ? "Update User": "Create User"}}</h3>
+			</div>
+			<div class="modal-body">
+
+				<form class="site-form">
+
+					<div class="form-group">
+						<label>Full Name</label>
+						<input type="text" id="fullname" ng-model = "usersDetail.fullName" class="form-control">
+						<div id="fname_req_msg" style="display: none;" class="form-error">First Name is required and cannot be empty</div>
+					</div>	
+					<div class="form-group">
+						<label>Email Id</label>
+						<input type="text" ng-if="!usersDetail._id" ng-disabled="0" id="email" ng-model = "usersDetail.emailId" class="form-control">
+						<input type="text" ng-if="usersDetail._id" ng-disabled="1" id="email" ng-model = "usersDetail.emailId" class="form-control">
+						<div></div>
+						<div id="email_exist_error" style="display: none;" class="form-error">Email is already registered, please use another.</div>
+						<div id="email_req_msg" style="display: none;" class="form-error">The email address is required and cannot be empty</div>
+						<div id="wrong_email_msg" style="display: none;" class="form-error">The input is not a valid email address</div>
+					</div>	
+					
+					<div class="form-group password-eye-field">
+						<label>Password</label>
+						<input type="password" id="password" ng-model = "usersDetail.pass" class="form-control">
+						<input type="hidden" ng-model="usersDetail.hidden" >
+						<span id="show_hide"><i class="fa fa-eye"></i></span>
+						<div id="password_req_msg" style="display: none;" class="form-error">Password is required and cannot be empty</div>
+					</div>					
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button id="create_sadmin" class="btn btn-primary" ng-click ="save_data()">{{ usersDetail._id ? "Update" : "Create"}}</button>
+				<button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+			</div>
+
+		</div>
+		
+	</div>
+</div>
+
+<!-- crete or edit subadmin modal end-->
+
+<!-- Delete Modal Start -->
+<div class="modal fade" id="deleteModal" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" class="creat_sub_admine">
+				<h3>Delete User</h3>
+			</div>
+			<div class="modal-body">
+				<div class="text-center font-bold-big">Are you sure to delete this: {{delete_name}}</div>
+			</div>
+			<div class="modal-footer">
+				<button ng-click="conf_delete()" class="btn btn-danger">Delete</button>
+				<button data-dismiss="modal" class="btn btn-primary">Cancel</button>
+			</div>
+		</div>
+		
+	</div>
+</div>
+</div>
+<!-- Delete Modal End -->
